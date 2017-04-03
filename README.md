@@ -1,2 +1,2 @@
 # My Udacity work
-Projects range from P1 to P6.
+All of my project thus far from the Udacity Nanodegree in Data Analysis are here.
