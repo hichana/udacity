@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm>
+  <relation changeset="31396941" id="34131" timestamp="2015-05-23T12:50:32Z" uid="88164" user="Med" version="48">
+    <member ref="1296147" role="" type="relation" />
+    <member ref="1296145" role="" type="relation" />
+    <member ref="1296144" role="" type="relation" />
+    <member ref="1296146" role="" type="relation" />
+    <tag k="is_in:state" v="LA;MS;AL;GA" />
+    <tag k="name" v="I 59 (super)" />
+    <tag k="network" v="US:I" />
+    <tag k="ref" v="59" />
+    <tag k="route" v="road" />
+    <tag k="symbol" v="http://upload.wikimedia.org/wikipedia/commons/3/39/I-59.svg" />
+    <tag k="type" v="route" />
+    <tag k="wikipedia" v="en:Interstate 59" />
+  </relation>
+  <relation changeset="32543518" id="307240" timestamp="2015-07-10T13:57:14Z" uid="9176" user="Maarten Deen" version="5">
+    <member ref="43287582" role="outer" type="way" />
+    <member ref="43402805" role="outer" type="way" />
+    <member ref="43389167" role="outer" type="way" />
+    <member ref="22525398" role="outer" type="way" />
+    <member ref="43471054" role="outer" type="way" />
+    <member ref="43449611" role="outer" type="way" />
+    <member ref="50680803" role="outer" type="way" />
+    <member ref="43359758" role="outer" type="way" />
+    <member ref="22525054" role="outer" type="way" />
+    <member ref="43287494" role="outer" type="way" />
+    <member ref="22524448" role="outer" type="way" />
+    <member ref="43385663" role="outer" type="way" />
+    <member ref="43385657" role="outer" type="way" />
+    <member ref="43441225" role="outer" type="way" />
+    <member ref="43420501" role="outer" type="way" />
+    <member ref="22519930" role="outer" type="way" />
+    <member ref="43451489" role="outer" type="way" />
+    <member ref="43356045" role="outer" type="way" />
+    <member ref="43356029" role="outer" type="way" />
+    <member ref="43435162" role="outer" type="way" />
+    <member ref="43356027" role="outer" type="way" />
+    <member ref="43430309" role="outer" type="way" />
+    <member ref="43385527" role="outer" type="way" />
+    <member ref="43385525" role="outer" type="way" />
+    <member ref="43385523" role="outer" type="way" />
+    <member ref="43385522" role="outer" type="way" />
+    <member ref="43385519" role="outer" type="way" />
+    <member ref="43385514" role="outer" type="way" />
+    <member ref="43385670" role="outer" type="way" />
+    <member ref="43285880" role="inner" type="way" />
+    <member ref="43273326" role="inner" type="way" />
+    <member ref="43404911" role="inner" type="way" />
+    <member ref="43286053" role="inner" type="way" />
+    <member ref="43369870" role="inner" type="way" />
+    <member ref="43474714" role="inner" type="way" />
+    <member ref="43388894" role="inner" type="way" />
+    <member ref="43358252" role="inner" type="way" />
+    <member ref="43530079" role="inner" type="way" />
+    <member ref="43286597" role="inner" type="way" />
+    <tag k="natural" v="water" />
+    <tag k="type" v="multipolygon" />
+  </relation>
+  <relation changeset="28759852" id="4578401" timestamp="2015-02-10T20:52:09Z" uid="22925" user="ELadner" version="1">
+    <member ref="327490165" role="outer" type="way" />
+    <member ref="327490163" role="inner" type="way" />
+    <tag k="building" v="yes" />
+    <tag k="type" v="multipolygon" />
+  </relation>
+  </osm>
