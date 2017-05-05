@@ -1,39 +1,90 @@
-REQUIREMENTS
-* Parse and clean open street map data for a part of the world
-* Programmatically ssess data for:
-    * Validity
-    * Accuracy
-    * Completeness
-    * Consistency
-    * Uniformity
-* Compile data into an SQL database
-* Use database queries to conduct a statistical overview of the dataset and run any other questions/analysis
-* Report on how the data could be improved - conduct at least one investigation to back up the suggestion (ex. if I think YAML or some other markup is better - maybe I demonstrate a way to parse XML into YAML). Analyze the possible pros and cons with the suggested improvements.
+PROJECT GOALS AND MILESTONES:
+* Parse and clean OpenStreetMap data
+	* √Identify, archive, document Data File
+	* √Research and document basic structure and use-case for Data File
+	* √Prepare working sample of Data File
+		* √Investigate structure of working sample (visually)
+			* √lost structure of original b/c grabbing kth elem
+				* EXP: find way to build sample that is cleaner
+					* iterparse iterates over every elem/child
+					* need iterate only over direct children
+					* does element object have children?
+	* Audit data(script)
+		* √Identify focus
+			* √going with natural features
+		* √Create appropriate dict for auditing one or more features
+			* √What keys exist? And what types of values do they hold?
+		* Determine what to clean
+			* One way elem (321535489) has incorrect keys (ex. "k=FCODE")
+				* ok? There's only one...
+			* Multiple values in values that are supposed to be unique
+				* 4344824
+			
+
+	* Validity, accuracy, completeness, consistency, uniformity
+	* Identify focus/scope for cleaning
+	* Clean data(data.py-inspired script, uses audit script)
+* Convert into database
+* Perform statistical analysis using database queries of the data, investigate any other questions I may have
+	* Ex
+		* size of file
+		* number of unique users
+		* number of nodes and ways
+		* number of chosen types of nodes, like cafes, shops, etc.
+		* etc.
+* Report on how the data could be improved - conduct at least one investigation to back up my suggestion - discuss benefits and anticipated problems implementing the improvement
 
 
+PROJECT FORMAT:
+* Readme (github repo)
+	* lists all files/folder in repo
+		* notebook/report
+		* Text file with link to map position wrangled in project/short description of area and why chose it
+		* scripts
+		* supporting files
 
-EXECUTION
-*@ Find/document data file
-*@ Create smaller subset of data to work with - then test on larger set.
-* Parsing
-	* Manually inspect data, understand it's structure and document what I'll need to extract from it for the assessment stage
 
+PROJECT NOTES:
+* can use elevation tag to note how much of the natural area is below sea level
+* currently - then find out when make some kind of count-down for how long
+* people have to view it
+* Project lives in github repo with README.md, but project is structured by a Jupyter notebook
+* Project narrative of discovery, investigation, challenges while wrangling, results, etc. documented in the notebook
+* Scripts comprise one per field audited and one that converts and cleans all the data
+* Perform comment refactoring
+	* my project
+	* lesson quizes
+* Focusing on New Orleans, which is expected to disappear within a finite period of time due to climate change
+	* do some populated areas as main focus for project, find connection (ex. of a street name) within the populated area and then investigate unpoulated natural areas that will also disappear. Possibly quantify the natural loss (ex. number of aligators lost, bugs, effect of not having wetlands/marshes there anymore, etc.). Maybe find a programmatic way to name each stream and such? Maybe naming them will bring it home (what we're losing).
+* NHD data seems clean already and well-sctuctured. Check!
+* Why the hell is Lloyd's pond there? Maybe I can clean some or all of New Orleans, then do my stuff about natural areas?
+* Possible suggestion for improving - YAML or some other markup is better? Maybe I demonstrate a way to parse XML into YAML). Analyze the possible pros and cons with the suggested improvements. Maybe suggest adding a tag that uses altitude to denote suseptability to climate change, or even drought. Basically another dimension to the openstreetmap that can make more apparent the effects of climate change.
+* Andy suggests putting results way at top along with some graphics
+* For report:
+---------------------------------------------------
+	OpenStreetMap sounds like an important project. Their wiki describes the project:
 
+	"Welcome to OpenStreetMap, the project that creates and distributes free geographic data for the world. We started it because most maps you think of as free actually have legal or technical restrictions on their use, holding back people from using them in creative, productive, or unexpected ways."
 
-NOTES
-* New Orleans, which is expected to disappear in a set number of years due to climate change
-* Borrow and modify code from the open street map case study from lessons
-* Check data accuracy, validity, etc. programmatically whenever possible, and fix it programmatically 
-* Structure
-	* Notebook is main report - should boil down to running one file in terminal that executes all cleaning, etc.
-		* Overviewing the data, documenting the challenges encountered and thought process while data wrangling. Include visual checks and programmatic ones.
-	* Scripts (one per field audited and one that converts and cleans the data) are in subfolder and imported/used/referenced in Jupyter notebook
-	* Readme lists all files in folder
-	* text file with link to map position wrangled in project/short description of area and why chose it
-	* OSM sample
-	* text file with citations and attribution
-* Project scope
-	* focus only on non-populated areas that will disappear. The populated areas are easy, because they will all basically be gone with global warming. So residents can just look around and count on it all going away. But who is going to look around at the natural areas? Who will remember a small river? How many actual animals, bugs, etc. will be displaced (can use this in statistical summary)? Many of these are nameless. Maybe i am the one who names them? Name them before they go away! Maybe naming them will make us more sad about their inevitable loss.
-* Ask question and answer them with data
-* Natural areas? Problem is that all the data is from NHD dataset and is probably already totall clean (and it's more simple). So how else can I both clean natural-related data and achieve my statement? Even many of the wetlands and such may not have names. Could there be a data-driven way to name them myself? Like why the hell is Lloyd's pond there? Maybe I can clean some or all of New Orleans, then do my stuff about natural areas?
-* Check again that all problem sets from section are complete (probably omit the xml one with New York Times?). Comment, refactor if needed
+	From the OpenStreetMap [Map Features](http://wiki.openstreetmap.org/wiki/Map_Features) documentation page:
+
+	"OpenStreetMap represents physical features on the ground (e.g., roads or buildings) using tags attached to its basic data structures (its nodes, ways, and relations). Each tag describes a geographic attribute of the feature being shown by that specific node, way or relation."
+
+	So I'll be cleaning a node, way and/or a relation element. What are they exactly?
+
+	Node:
+	* "A node is one of the core elements in the OpenStreetMap data model. It consists of a single point in space defined by its latitude, longitude and node id."
+	* "Nodes can be used to define standalone point features, but are more often used to define the shape or "path" of a way."
+	* "Nodes can be used on their own to define point features. When used in this way, a node will normally have at least one tag to define its purpose."
+
+	Way:
+	* "A way is an ordered list of nodes which normally also has at least one tag or is included within a Relation."
+	* "An open way is way describing a linear feature which does not share a first and last node. Many roads, streams and railway lines are open ways."
+	* "An area (also polygon) is an enclosed filled area of territory defined as a closed way."
+
+	Relation:
+	* "A relation ... consists of one or more tags and also an ordered list of one or more nodes, ways and/or relations as members which is used to define logical or geographic relationships between other elements. "
+	* "A member of a relation can optionally have a role which describes the part that a particular feature plays within a relation."
+	* Relations may represent things like a bus route, an administrative boundary for a city, restrictions along a route such as "no left turn" or "no U-turn", etc.
+---------------------------------------------------
+
