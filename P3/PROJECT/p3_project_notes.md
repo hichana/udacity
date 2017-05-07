@@ -1,31 +1,18 @@
 PROJECT GOALS AND MILESTONES:
-* Parse and clean OpenStreetMap data
+* Introductory notes
+	* this will be also an exercise into the power of VIM
+	* maybe just suggest improvement can be adding altitudes to really visualize on OpenStreetMap global warming land disappearance over time
+* Parse and clean(for Validity, accuracy, completeness, consistency, uniformity) OpenStreetMap data
 	* √Identify, archive, document Data File
-	* √Research and document basic structure and use-case for Data File
-	* √Prepare working sample of Data File
-		* √Investigate structure of working sample (visually)
-			* √lost structure of original b/c grabbing kth elem
-				* EXP: find way to build sample that is cleaner
-					* iterparse iterates over every elem/child
-					* need iterate only over direct children
-					* does element object have children?
-	* Audit data(script)
-		* √Identify focus
-			* √going with natural features
-		* √Create appropriate dict for auditing one or more features
-			* √What keys exist? And what types of values do they hold?
-		* Determine what to clean
-			* One way elem (321535489) has incorrect keys (ex. "k=FCODE")
-				* ok? There's only one...
-			* Multiple values in values that are supposed to be unique
-				* 4344824
-			
-
-	* Validity, accuracy, completeness, consistency, uniformity
-	* Identify focus/scope for cleaning
-	* Clean data(data.py-inspired script, uses audit script)
+	* √inspect and document general structure 
+	* √Speculate on what to work with specifically
+	* √Inspect/audit
+	* Write scripts to perform cleaning
 * Convert into database
 * Perform statistical analysis using database queries of the data, investigate any other questions I may have
+	* √Prepare sample of data set for others to see/open
+		* √Investigate structure of working sample (visually)
+			* √all good
 	* Ex
 		* size of file
 		* number of unique users
@@ -36,19 +23,16 @@ PROJECT GOALS AND MILESTONES:
 
 
 PROJECT FORMAT:
-* Readme (github repo)
+* Readme (in github repo)
 	* lists all files/folder in repo
-		* notebook/report
+		* jupyter notebook/report
 		* Text file with link to map position wrangled in project/short description of area and why chose it
 		* scripts
 		* supporting files
 
 
 PROJECT NOTES:
-* can use elevation tag to note how much of the natural area is below sea level
-* currently - then find out when make some kind of count-down for how long
-* people have to view it
-* Project lives in github repo with README.md, but project is structured by a Jupyter notebook
+* can use elevation tag to note how much of the natural area is below sea level currently - then find out when make some kind of count-down for how long people have to view it
 * Project narrative of discovery, investigation, challenges while wrangling, results, etc. documented in the notebook
 * Scripts comprise one per field audited and one that converts and cleans all the data
 * Perform comment refactoring
