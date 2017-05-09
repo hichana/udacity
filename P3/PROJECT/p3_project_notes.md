@@ -6,7 +6,7 @@ GOALS AND MILESTONES:
 	* √Inspect/audit/plan out cleaning methodology
 	* √Build basic parser/CSV compiler
 	* √Confirm basic parser/CSV compiler working properly
-	* Write cleaning scripts - insert into data.py
+	* √Write cleaning scripts - insert into data.py
 	* Update schema - implement schema validation
 
 * Execute cleaning and conversion into database
