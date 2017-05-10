@@ -7,11 +7,11 @@ GOALS AND MILESTONES:
 	* √Build basic parser/CSV compiler
 	* √Confirm basic parser/CSV compiler working properly
 	* √Write cleaning scripts - insert into data.py
-	* Update schema - implement schema validation
-
-* Execute cleaning and conversion into database
+	* √Update schema - implement schema validation
+	* Execute cleaning 
 
 * Perform statistical analysis using database queries
+	* port CSV files into database
 	* investigate any other questions I may have
 		* size of file
 		* number of unique users
