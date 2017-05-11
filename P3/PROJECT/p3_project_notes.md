@@ -8,10 +8,13 @@ GOALS AND MILESTONES:
 	* √Confirm basic parser/CSV compiler working properly
 	* √Write cleaning scripts - insert into data.py
 	* √Update schema - implement schema validation
-	* Execute cleaning 
+	* √Execute cleaning 
 
 * Perform statistical analysis using database queries
-	* port CSV files into database
+	* √port CSV files into database
+		* √update data_wrangling_schema.py
+		* √create database, import schema
+		* √import CSV files into database
 	* investigate any other questions I may have
 		* size of file
 		* number of unique users
