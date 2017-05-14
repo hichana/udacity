@@ -15,10 +15,10 @@ GOALS AND MILESTONES:
 		* √update data_wrangling_schema.py
 		* √create database, import schema
 		* √import CSV files into database
-	* investigate any other questions I may have
-		* size of file
-		* number of unique users
-		* number of nodes and ways
+	* conduct database queries
+		* √size of file
+		* √number of unique users
+		* √number of nodes and ways
 		* number of chosen types of nodes, like cafes, shops, etc.
 		* ...
 
