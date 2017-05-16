@@ -19,8 +19,7 @@ GOALS AND MILESTONES:
 		* √size of file
 		* √number of unique users
 		* √number of nodes and ways
-		* number of chosen types of nodes, like cafes, shops, etc.
-		* ...
+		* √number of chosen types of nodes, like cafes, shops, etc.
 
 * Report on how the data could be improved
 	* Conduct at least one investigation to back up my suggestion
@@ -34,9 +33,9 @@ NOTES:
 	* README.md (lists all files/folder in repo)
 	* jupyter notebook (report)
 		* two main sections:
-			* short with results and visuals
-			* long with tutorial/full report
-		* Project narrative
+			* summary with results and visuals
+			* full with tutorial/full report
+		* Is a project narrative with things like:
 			* discovery 
 			* investigation
 			* challenges while wrangling
@@ -46,12 +45,7 @@ NOTES:
 		* link to map position wrangled in project
 		* intro and short description of area and why I chose it
 	* scripts
-		* Comprise one per field audited and one that converts and cleans all the data
-	* supporting files folder (includes sample OSM file)
-
-* Introductory notes
-	* this will be also an exercise into the power of VIM
-		* include link to VIM adventures game
+	* supporting files folder (includes sample OSM file less than 10mb)
 
 * Statistical database investigation
 	* possibly quantify
@@ -66,9 +60,12 @@ NOTES:
 	* my project
 	* lesson quizes
 
-* Why the hell is Lloyd's pond there?
-
 ---------------------------------------------------
+* Intro defines the OSM extract area
+* Will be more of a structural - data-integrety focused analysis
+	* this will be also an exercise into the power of VIM
+		* include link to VIM adventures game
+
 	OpenStreetMap sounds like an important project. Their wiki describes the project:
 
 	"Welcome to OpenStreetMap, the project that creates and distributes free geographic data for the world. We started it because most maps you think of as free actually have legal or technical restrictions on their use, holding back people from using them in creative, productive, or unexpected ways."
