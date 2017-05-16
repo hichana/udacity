@@ -61,16 +61,7 @@ NOTES:
 	* lesson quizes
 
 ---------------------------------------------------
-* Intro defines the OSM extract area
-* Will be more of a structural - data-integrety focused analysis
-	* this will be also an exercise into the power of VIM
 		* include link to VIM adventures game
-
-	OpenStreetMap sounds like an important project. Their wiki describes the project:
-
-	"Welcome to OpenStreetMap, the project that creates and distributes free geographic data for the world. We started it because most maps you think of as free actually have legal or technical restrictions on their use, holding back people from using them in creative, productive, or unexpected ways."
-
-	From the OpenStreetMap [Map Features](http://wiki.openstreetmap.org/wiki/Map_Features) documentation page:
 
 	"OpenStreetMap represents physical features on the ground (e.g., roads or buildings) using tags attached to its basic data structures (its nodes, ways, and relations). Each tag describes a geographic attribute of the feature being shown by that specific node, way or relation."
 
