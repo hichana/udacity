@@ -6,11 +6,7 @@ SAMPLE_FILE = "/Users/mchana/GitHub/udacity/P3/PROJECT/supporting_files/samples/
 k = 10 # Parameter: take every k-th top level element
 
 def get_element(osm_file, tags=('node', 'way', 'relation')):
-    """Yield element if it is the right type of tag
 
-    Reference:
-    http://stackoverflow.com/questions/3095434/inserting-newlines-in-xml-file-generated-via-xml-etree-elementtree-in-python
-    """
     context = ET.iterparse(osm_file, events=('start', 'end'))
     _, root = next(context)
     for event, elem in context:

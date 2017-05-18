@@ -2,8 +2,6 @@
 # int() and float() type coercion functions. Otherwise it could easily stored as
 # as JSON or another serialized format.
 
-# REMOVE REDUNDANT COERCE FUNCTIONALITY
-
 project_schema = {
     'node': {
         'type': 'dict',
@@ -86,7 +84,7 @@ project_schema = {
 				'role': {'required': True, 'type': 'string'},
 				'position': {'required': True, 'type': 'integer', 'coerce': int}
 			}
-			
+
 		}
 	},
 	'relation_tags': {

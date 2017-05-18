@@ -21,9 +21,9 @@ GOALS AND MILESTONES:
 		* √number of nodes and ways
 		* √number of chosen types of nodes, like cafes, shops, etc.
 
-* Report on how the data could be improved
-	* Conduct at least one investigation to back up my suggestion
-	* Discuss benefits and anticipated problems implementing the improvement
+* √Report on how the data could be improved
+	* √Conduct at least one investigation to back up my suggestion
+	* √Discuss benefits and anticipated problems implementing the improvement
 
 
 
@@ -47,44 +47,6 @@ NOTES:
 	* scripts
 	* supporting files folder (includes sample OSM file less than 10mb)
 
-* Statistical database investigation
-	* possibly quantify
-		* natural loss
-		* loss to human property
-		* ...
-
-* Suggestions for improving data set
-	* add elevation? Maybe already exists?
-
 * Perform comment refactoring
 	* my project
 	* lesson quizes
-
----------------------------------------------------
-		* include link to VIM adventures game
-
-	"OpenStreetMap represents physical features on the ground (e.g., roads or buildings) using tags attached to its basic data structures (its nodes, ways, and relations). Each tag describes a geographic attribute of the feature being shown by that specific node, way or relation."
-
-	So I'll be cleaning a node, way and/or a relation element. What are they exactly?
-
-	Node:
-	* "A node is one of the core elements in the OpenStreetMap data model. It consists of a single point in space defined by its latitude, longitude and node id."
-	* "Nodes can be used to define standalone point features, but are more often used to define the shape or "path" of a way."
-	* "Nodes can be used on their own to define point features. When used in this way, a node will normally have at least one tag to define its purpose."
-
-	Way:
-	* "A way is an ordered list of nodes which normally also has at least one tag or is included within a Relation."
-	* "An open way is way describing a linear feature which does not share a first and last node. Many roads, streams and railway lines are open ways."
-	* "An area (also polygon) is an enclosed filled area of territory defined as a closed way."
-
-	Relation:
-	* "A relation ... consists of one or more tags and also an ordered list of one or more nodes, ways and/or relations as members which is used to define logical or geographic relationships between other elements. "
-	* "A member of a relation can optionally have a role which describes the part that a particular feature plays within a relation."
-	* Relations may represent things like a bus route, an administrative boundary for a city, restrictions along a route such as "no left turn" or "no U-turn", etc.
-
-
-
-
-
----------------------------------------------------
-

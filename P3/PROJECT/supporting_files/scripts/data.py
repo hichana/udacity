@@ -5,14 +5,14 @@ import re
 import xml.etree.cElementTree as ET
 import pprint
 import inspect as ins
-
 import cerberus
-
 import schema_validation
 import fix_dict as fd
 
+# path to osm file
 OSM_PATH = "/Users/mchana/GitHub/udacity/large_files/new-orleans_region.osm"
 
+# path where CSV files will be saved
 exports_path = "/Users/mchana/GitHub/udacity/P3/PROJECT/supporting_files/exports/csv/"
 
 NODES_PATH = exports_path + "nodes.csv"
@@ -25,9 +25,11 @@ RELATIONS_MEMBERS_PATH = exports_path + "relations_members.csv"
 RELATIONS_TAGS_PATH = exports_path + "relations_tags.csv"
 
 
+# regex checks
 LOWER_UPPER_COLON = re.compile(r'^([a-z]|_)+:([a-z]|_)+', re.IGNORECASE)
 PROBLEMCHARS = re.compile(r'[=\+/&<>;\'"\?%#$@\,\. \t\r\n]')
 
+# schema validation
 SCHEMA = schema_validation.project_schema
 
 # Make sure the fields order in the csvs matches the column order in the sql table schema
@@ -41,7 +43,7 @@ RELATIONS_TAGS_FIELDS = ['id', 'key', 'value', 'type']
 RELATIONS_MEMBERS_FIELDS = ['id', 'mem_id','type', 'role', 'position']
 
 
-# why node_attr_field, way_attr_field input params here?
+# extracts data from an element and returns a dict
 def shape_element(element, node_attr_fields=NODES_FIELDS, way_attr_fields=WAYS_FIELDS,
                   problem_chars=PROBLEMCHARS, default_tag_type='regular'):
     """Clean and shape node or way XML element to Python dict"""
@@ -198,7 +200,6 @@ def process_map(file_in, validate):
         validator = cerberus.Validator()
 
         # loop over generator obj from get_element()
-            # get_element() takes OSM file and tags I'm interested in
         for element in get_elements(file_in, tags=('node', 'way', 'relation')):
             # takes in the element from iterator, outputs a dict
             el = shape_element(element)
@@ -225,14 +226,3 @@ def process_map(file_in, validate):
 
 if __name__ == '__main__':
     process_map(OSM_PATH, validate=True)
-
-# process_map called
-    # with-open files to be written
-    # create writer objects
-    # write headers
-    # create class validator object
-    # iterate over each element from a generator created by get_element()
-        # create a dict from the element
-        # FIXER FUNCTION HERE!!!
-        # validate dict against a schema using validate_element()
-        # write it to csv using appropriate writer object
