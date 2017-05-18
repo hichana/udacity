@@ -13,14 +13,16 @@ import fix_dict as fd
 
 OSM_PATH = "/Users/mchana/GitHub/udacity/large_files/new-orleans_region.osm"
 
-NODES_PATH = "exports_csv/nodes.csv"
-NODES_TAGS_PATH = "exports_csv/nodes_tags.csv"
-WAYS_PATH = "exports_csv/ways.csv"
-WAYS_NODES_PATH = "exports_csv/ways_nodes.csv"
-WAYS_TAGS_PATH = "exports_csv/ways_tags.csv"
-RELATIONS_PATH = "exports_csv/relations.csv"
-RELATIONS_MEMBERS_PATH = "exports_csv/relations_members.csv"
-RELATIONS_TAGS_PATH = "exports_csv/relations_tags.csv"
+exports_path = "/Users/mchana/GitHub/udacity/P3/PROJECT/supporting_files/exports/csv/"
+
+NODES_PATH = exports_path + "nodes.csv"
+NODES_TAGS_PATH = exports_path + "nodes_tags.csv"
+WAYS_PATH = exports_path + "ways.csv"
+WAYS_NODES_PATH = exports_path + "ways_nodes.csv"
+WAYS_TAGS_PATH = exports_path + "ways_tags.csv"
+RELATIONS_PATH = exports_path + "relations.csv"
+RELATIONS_MEMBERS_PATH = exports_path + "relations_members.csv"
+RELATIONS_TAGS_PATH = exports_path + "relations_tags.csv"
 
 
 LOWER_UPPER_COLON = re.compile(r'^([a-z]|_)+:([a-z]|_)+', re.IGNORECASE)
