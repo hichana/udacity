@@ -30,7 +30,7 @@ GOALS AND MILESTONES:
 
 NOTES:
 * Format - GitHub repo contains:
-	* README.md (lists all files/folder in repo)
+	* √README.md (lists all files/folder in repo)
 	* jupyter notebook (report)
 		* two main sections:
 			* summary with results and visuals
