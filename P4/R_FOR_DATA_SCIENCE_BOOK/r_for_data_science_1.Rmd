@@ -1,0 +1,76 @@
+---
+title: "R for Data Science 1"
+author: "Matt Chana"
+date: "5/28/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# 1. Introduction
+### 1.1: What you will learn
+Basic cycle is Import > Tidy > (Transform <-> Visualize <-> Model) > Communicate.
+
+* Tidy when each column is a variable, and each row is an observation
+* Transforming, narrowing in on observations of interest and calculating summary statistics (Tidying + Transforming = Wrangling)
+* A good visualization will show you tihngs you didn't expect, raise new questions about the data, or hint that asking wrong question.
+* Models are a mathematical/computational tool.
+
+### 1.3: What you won't learn
+Carefully consider if your big data problem is a small data problem in disguise (like taking a subset) - so how to find the right small data. Also, if the big data problem is actually various small data problems. 
+
+Models should be used for hypothesis confirmation only, not exploration. 
+```{r}
+# install multiple packages
+# install.packages("tidyverse")
+
+# update tityverse
+# tidyverse_update()
+
+# install other relevant packages
+# install.packages(c("nycflights13", "gapminder", "Lahman"))
+```
+
+Some R basics
+```{r}
+# explicitly state where a function or dataset comes from 
+# dplyr::mutate()
+# nycflights13::flights
+```
+
+### 1.6
+"reprex" stands for minimal reproducible example. Requires:
+
+* packages loaded at top of script (good time to check make sure up to date...)
+* the data. To get the data:
+```{r}
+# review it, find the smallest subset that reveals the problem
+mtcars
+```
+
+```{r}
+# take a subset
+mtcars_subset <- subset(mtcars, mpg==21.0)
+mtcars_subset
+```
+
+```{r}
+# output the subset in a single line
+dput(mtcars_subset)
+```
+
+```{r}
+# now that line can be easily loaded into a dataframe
+test_data_dataframe = structure(list(mpg = c(21, 21), cyl = c(6, 6), disp = c(160, 
+160), hp = c(110, 110), drat = c(3.9, 3.9), wt = c(2.62, 2.875
+), qsec = c(16.46, 17.02), vs = c(0, 0), am = c(1, 1), gear = c(4, 
+4), carb = c(4, 4)), .Names = c("mpg", "cyl", "disp", "hp", "drat", 
+"wt", "qsec", "vs", "am", "gear", "carb"), row.names = c("Mazda RX4", 
+"Mazda RX4 Wag"), class = "data.frame")
+test_data_dataframe
+```
+
+* Spend time ensuring code is commended, easy to read. Concise yet informative variable names, irrelevant parts to the problem are removed
+* Start a fresh r session with the code and run it to test
