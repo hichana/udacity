@@ -1,0 +1,197 @@
+---
+title: "movies_eda"
+author: "Matt Chana"
+date: "6/8/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+# knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+```
+
+# Import and tidy:
+
+Initial import:
+```{r}
+movies <- read_csv("supporting_files/movie_metadata.csv")
+movies
+```
+
+Now make easier to see:
+```{r}
+glimpse(movies)
+```
+Note, There are 5,043 observations here.
+
+Now examine:
+Check for parsing errors:
+```{r}
+parse_errs <- problems(movies)
+parse_errs
+```
+
+looks like these movies have super inflated budgets. Why? Find and examine each row:
+```{r}
+parse_prob <- movies[parse_errs$row,]
+glimpse(parse_prob)
+```
+
+All international films - I'm betting they're showing the `budget` column all in a foreign currency. Note, Tibble framework sets all parsing errors to `NA`, so I'll disregard for now and let them be `NA`.
+
+Finally, look at summary of data frame to understand even better:
+```{r}
+summary(movies)
+# str(movies)
+```
+
+Things to keep an eye on from looking at summary again:
+
+* multiple variables have `NA` instead of a value. Ones to be aware of:
+  * `duration`: strange that a movie's duration is unknown. Thankfully only 15 instances.
+  * `budget`: also strange if no value here, but for the 4 instances of foreign film I found, makes sense. Many more here, at 496.
+  * `title_year`: each film definitely has a year it was finished, so strange that 108 instances
+  * `aspect_ratio`: 329 instances. But note not really interesting variable given aspect ratio is often modified for some films (3:4 to 16:9)
+  * some values may be very excessive - like in `budget`, which has a max of approximatel 2,128,000,000. I'm sure never been movie made for over two billion dollars
+
+
+Is it "tidy"?:
+
+* each variable has its own column? Of the 28 variables shown, each represents a unique type of measurement. Check.
+* each observation has its own row? Yes, no values exist that branch out into their own measurements. Check.
+* each value has its own cell? No, but will treat `plot_keywords` and `generes` as-is. Notes:
+  * `genres` is up to five genre keywords in alphabetical order and strings restricted to a representative keyword (ex. there is SciFi but no Scifi). Can leverage this by treating each unique combination as a measurement.
+  * `plot_keywords` has a small number of keywords, but nearly infinite number of combinations of any word or short phrase from human language. So leaving this as-is (but possibly using n-grams or something else)
+ 
+Finally, are there any duplicate observations?
+```{r}
+dupes <- which(duplicated(movies))
+dupes
+movies[dupes,]
+```
+
+Yes, so create new data frame that removes all duplicate observations:
+```{r}
+movies <- movies[which(!duplicated(movies)),]
+movies
+```
+
+Left with 4,998 rows. So in summary, checked for parsing errors, reviewed data frame for NA and extreme values, checked if tidy, removed duplicates. Good to go!
+
+### Review/document data and its structure
+So what do I have here? No documentation on Kaggle. Looked at spreadsheet and compared against web page for a given movie. My best guesses for variables and what they mean (only ones that are not obvious):
+
+Look at all variables:
+```{r}
+colnames(movies)
+```
+
+* `num_critic_for_reviews`: number of IMDB movie-critic-generated star/text reviews
+* `num_voted_users`: number of IMDB user-generated star-only reviews on a scale of 1-10
+* `num_user_for_reviews`: number of IMDB regular-user-generated star/text reviews
+
+Ok, data is now tidy and documented well-enough. Moving on to EDA.
+
+
+# EDA (Visualize <-> Transform <-> Model)
+Review data set again:
+```{r}
+glimpse(movies)
+```
+
+What do I think is valuable to add at this point?
+I wonder what number of genres looks like:
+```{r}
+movies <- mutate(movies,
+                  num_genres = sapply(gregexpr("[|]", movies$genres), length))
+movies
+```
+
+Plot number of genres:
+```{r}
+ggplot(movies) +
+  geom_bar(aes(x = num_genres))
+```
+
+Now plot some other things - plot all the continuous variables to see if anything sticks out:
+```{r}
+library(purrr)
+
+movies %>%
+  keep(is.numeric) %>% 
+  gather() %>% 
+  ggplot(aes(x = value)) +
+    facet_wrap(~ key, scales = "free") +
+    geom_histogram()
+```
+
+```{r}
+library(gridExtra)
+p1 <- qplot(movies$color)
+p2 <- qplot(movies$num_critic_for_reviews)
+p3 <- qplot(movies$director_facebook_likes)
+p4 <- qplot(movies$num_voted_users)
+p5 <- qplot(movies$num_user_for_reviews)
+grid.arrange(p1, p2, p3, p4, p5, ncol = 3, nrow = 2)
+```
+
+
+
+
+
+
+
+
+
+```{r}
+ggplot(movies2) +
+  geom_bar(aes(x = genres))
+```
+
+
+How many unique combinations of genres exist?
+```{r}
+sort(unique(movies2$genres))
+length(unique(movies2$genres))
+```
+
+Find max number of genres:
+```{r}
+max(movies2$num_genres)
+```
+
+
+
+
+
+
+
+
+```{r}
+ggplot(data = movies) +
+  geom_point(mapping = aes(x = budget, y = imdb_score, color = color))
+```
+
+
+Single categorical variable in bar chart:
+```{r}
+ ggplot(data = movies, mapping = aes(x = content_rating)) +
+  geom_bar()
+```
+
+
+Single continuous variable in histogram:
+```{r}
+ggplot(data = movies, mapping = aes(x = imdb_score)) +
+  geom_histogram(binwidth = .1)
+```
+
+
+```{r}
+ggplot(data = movies, mapping = aes(x = movie_facebook_likes)) +
+  geom_histogram(binwidth = 1000)
+```
+

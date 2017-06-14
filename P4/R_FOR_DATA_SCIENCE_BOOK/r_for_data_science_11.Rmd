@@ -1,0 +1,172 @@
+---
+title: "R for Data Science 11"
+author: "Matt Chana"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+### 11.2
+
+Function and delimiter method:
+* `read_csv()`, comma
+* `read_csv2()`, semicolon
+* `read_tsv()`, tab
+* `read_delim()`, any delimiter
+
+* `read_fwf()`, 
+* `fwf_widths()`,
+* `fwf_positions()`,
+* `read_table()`,
+
+* `read_log()`,
+* `read_log()`,
+
+All above functions behave similarly, so focusing here on `read_csv()`. First argument to `read_csv()` is the file path:
+```{r}
+heights <- read_csv("data/stroopdata.csv")
+```
+Now display:
+```{r}
+heights
+```
+
+
+Can create an inline csv - good for experimenting and sharing reproducible examples with others:
+```{r}
+read_csv("a,b,c
+1,2,3
+4,5,6")
+```
+
+Notice how first column is used for column names in both examples.
+
+Read in a csv:
+```{r}
+read_csv("The first line of metadata
+  The second line of metadata
+  x,y,z
+  1,2,3", skip = 2)
+```
+
+Skip via hash mark:
+```{r}
+read_csv("# A comment I want to skip
+  x,y,z
+  1,2,3", comment = "#")
+```
+
+Tell `read_csv()` NOT to use first row as column names:
+```{r}
+read_csv("1,2,3\n4,5,6", col_names = FALSE)
+```
+
+Explicitly state column names:
+```{r}
+read_csv("1,2,3\n4,5,6", col_names = c("x", "y", "z"))
+```
+
+Specify how to represent missing (or any kind of) values in the file:
+```{r}
+read_csv("a,b,c\n1,2,.", na = ".")
+```
+
+### 11.2.1 Compared to Base R
+`readr` functions are preferred over the base R installation's `read.csv()` for a few reasons:
+ 
+* is much faster (if need much faster use `data.table::fread()`)
+* produces tibbles, doesn't convert vectors to factors, use row names or munge the column names. 
+* are more reproducible
+ 
+ ### 11.2.2 Exercies
+ TODO
+ 
+### Parsing a Vector
+`parse_*()` functions take in a character vector and return a more specialized vector like a logical, integer or date:
+ 
+Remember, `str()` displays the internal structure of an R object.
+```{r}
+?str()
+```
+
+Some parsing: 
+```{r}
+str(parse_logical(c("TRUE", "FALSE", "NA")))
+str(parse_integer(c("1", "2", "3")))
+str(parse_date(c("2010-01-01", "1979-10-14")))
+```
+
+If parsing fails, you get a warning, and failures will be missing in output:
+```{r}
+x <- parse_integer(c("123", "345", "abc", "123.45"))
+x
+```
+
+Use `problems()` to get the complete set of parsing failures:
+```{r}
+problems(x)
+```
+
+A tibble is returned which can then be manipulated with `dplyr`. Using parsers is a matter of what's available and how they deal with different types of input. Important parsers:
+
+TODO: Add list of parsers
+* `parse_logical()` and `parse_integer()` parse logicals and integers.
+* `parse_double()`, strict number parser, `parse_number()` is a flexible numeric parser. Both complicated because different parts of the world write numbers in different ways.
+
+### 11.3.1 Numbers
+Difficult to parse numbers - different conventions in world, surrounding characters like $ and %. `readr` has option to set "locale":
+```{r}
+parse_double("1.23")
+parse_double("1,23", locale = locale(decimal_mark = ","))
+```
+
+`readr` is default US-centric.
+
+`parse_number()` ignores non-numeric characters before and after the number. 
+```{r}
+parse_number("$100")
+parse_number("20%")
+parse_number("It costs $123.45")
+```
+
+`parse_number()` ignoring the "grouping mark":
+```{r}
+# US
+parse_number("$123,456,789")
+
+# parts of EU
+parse_number("123.456.788", locale = locale(grouping_mark = "."))
+
+# Switzerland
+parse_number("123'456'789", locale = locale(grouping_mark = "'"))
+
+```
+
+### 11.3.2 Strings
+Convert a string to its hexadecimal representation of a byle of info. Ex, 48 is "H" and 61 is "a" and so on:
+```{r}
+charToRaw("Hadley")
+```
+
+This is ASCII encoding. There are other encoding standards that sometimes conflict. UTF-8 is comprehensive for about every character used by humans - even emoji. `readr` uses UTF-8 everywhere and assumes data is UTF-8 encoded when you read it. It always uses it when writing. Good for default but will fail tada produced by older systems that don't understand UTF-8. `parse_character()` can fix encoding problems.
+
+`readr` can help figure out encoding with `guess_encoding()`. 
+
+### 11.3.3 Factors
+Represent categorical variables w/ known set of possible values:
+```{r}
+fruit <- c("apple", "banana")
+parse_factor(c("apple", "banana", "bananananan"), levels = fruit)
+```
+
+If many problematic entries, easier to leave as character vectors and then use tools from strings and factors to clean them up.
+
+### 11.3.4 Dates, date-times, and times
+
+
+
+
+

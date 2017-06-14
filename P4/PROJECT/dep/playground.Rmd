@@ -1,0 +1,61 @@
+---
+title: "playground"
+author: "Matt Chana"
+date: "6/11/2017"
+output: html_document
+---
+```{r}
+beaver1
+```
+
+
+```{r}
+install.packages(c('repr', 'IRdisplay', 'evaluate', 'crayon', 'pbdZMQ', 'devtools', 'uuid', 'digest'))
+```
+
+```{r}
+devtools::install_github('IRkernel/IRkernel')
+```
+
+
+
+```{r}
+d <- mtcars
+d
+```
+
+```{r}
+d$vs <- factor(d$vs)
+d$am <- factor(d$am)
+```
+
+
+
+
+
+
+```{r}
+data(state)
+states <- data.frame(state.abb, state.name, state.area, state.center,
+                     state.division, state.region, state.x77)
+states
+```
+
+Separate:
+```{r}
+genre_names <- c("g1", "g2", "g3", "g4", "g5", "g6", "g7")
+
+movies3 <- movies %>%
+  mutate(num_genres = sapply(gregexpr("[|]", movies$genres), length)) %>%
+  separate(col = genres, into = genre_names, remove = FALSE)
+movies3
+```
+
+
+Unnest:
+```{r}
+movies4 <- movies %>%
+  mutate(genre_split = strsplit(as.character(genres), "[|]")) %>%
+  unnest(genre_split)
+movies4
+```
